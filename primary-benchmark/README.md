@@ -1,4 +1,4 @@
-# Primary benchmark data for author review
+# Primary benchmark data
 
 Study: Activation energy prediction and conductivity selection in oxygen ion conductors
 
