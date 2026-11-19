@@ -1,0 +1,25 @@
+view,branch,path_type,pair_count,unique_paths,opposing,reinforcing,prefactor_ties,energy_ties,both_zero,delta_Ea_min_meV,delta_Ea_max_meV,delta_lnA_min,delta_lnA_max,supported_temperature_calculations,aggregation
+CORE14,E2_LT,ALL,14,10,13,1,0,0,0,-125.000,224.000,-1.395,3.348,0,descriptive counts; shared pairs/path blocks not independent
+CORE14,E2_LT,FIXED_X,6,4,6,0,0,0,0,-2.000,224.000,-0.265,3.348,0,descriptive counts; shared pairs/path blocks not independent
+CORE14,E2_LT,FIXED_Y,6,4,5,1,0,0,0,-68.000,44.000,-0.806,0.595,0,descriptive counts; shared pairs/path blocks not independent
+CORE14,E2_LT,FIXED_SUM,2,2,2,0,0,0,0,-125.000,-120.000,-1.395,-1.315,0,descriptive counts; shared pairs/path blocks not independent
+CORE14,E1_HT,ALL,14,10,13,1,0,0,0,-62.000,107.000,-0.640,1.562,0,descriptive counts; shared pairs/path blocks not independent
+CORE14,E1_HT,FIXED_X,6,4,6,0,0,0,0,22.000,107.000,0.058,1.562,0,descriptive counts; shared pairs/path blocks not independent
+CORE14,E1_HT,FIXED_Y,6,4,5,1,0,0,0,-5.000,60.000,-0.030,1.079,0,descriptive counts; shared pairs/path blocks not independent
+CORE14,E1_HT,FIXED_SUM,2,2,2,0,0,0,0,-62.000,-47.000,-0.640,-0.483,0,descriptive counts; shared pairs/path blocks not independent
+WITHOUT_R0024,E2_LT,ALL,12,8,11,1,0,0,0,-125.000,224.000,-1.395,3.348,0,descriptive counts; shared pairs/path blocks not independent
+WITHOUT_R0024,E2_LT,FIXED_X,5,3,5,0,0,0,0,46.000,224.000,0.589,3.348,0,descriptive counts; shared pairs/path blocks not independent
+WITHOUT_R0024,E2_LT,FIXED_Y,5,3,4,1,0,0,0,-68.000,32.000,-0.806,0.526,0,descriptive counts; shared pairs/path blocks not independent
+WITHOUT_R0024,E2_LT,FIXED_SUM,2,2,2,0,0,0,0,-125.000,-120.000,-1.395,-1.315,0,descriptive counts; shared pairs/path blocks not independent
+WITHOUT_R0024,E1_HT,ALL,12,8,11,1,0,0,0,-62.000,107.000,-0.640,1.562,0,descriptive counts; shared pairs/path blocks not independent
+WITHOUT_R0024,E1_HT,FIXED_X,5,3,5,0,0,0,0,27.000,107.000,0.449,1.562,0,descriptive counts; shared pairs/path blocks not independent
+WITHOUT_R0024,E1_HT,FIXED_Y,5,3,4,1,0,0,0,-5.000,60.000,-0.030,1.079,0,descriptive counts; shared pairs/path blocks not independent
+WITHOUT_R0024,E1_HT,FIXED_SUM,2,2,2,0,0,0,0,-62.000,-47.000,-0.640,-0.483,0,descriptive counts; shared pairs/path blocks not independent
+ALL_SOURCE_NATIVE,E2_LT,ALL,88,22,72,14,0,2,0,-213.000,224.000,-2.800,3.348,0,descriptive counts; shared pairs/path blocks not independent
+ALL_SOURCE_NATIVE,E2_LT,FIXED_X,32,6,27,3,0,2,0,-16.000,224.000,-0.584,3.348,0,descriptive counts; shared pairs/path blocks not independent
+ALL_SOURCE_NATIVE,E2_LT,FIXED_Y,31,7,23,8,0,0,0,-68.000,81.000,-0.806,0.726,0,descriptive counts; shared pairs/path blocks not independent
+ALL_SOURCE_NATIVE,E2_LT,FIXED_SUM,25,9,22,3,0,0,0,-213.000,35.000,-2.800,0.885,0,descriptive counts; shared pairs/path blocks not independent
+ALL_SOURCE_NATIVE,E1_HT,ALL,88,22,77,9,0,2,0,-174.000,200.000,-2.858,2.693,0,descriptive counts; shared pairs/path blocks not independent
+ALL_SOURCE_NATIVE,E1_HT,FIXED_X,32,6,29,2,0,1,0,-10.000,200.000,-0.289,2.693,0,descriptive counts; shared pairs/path blocks not independent
+ALL_SOURCE_NATIVE,E1_HT,FIXED_Y,31,7,24,7,0,0,0,-69.000,61.000,-0.857,1.079,0,descriptive counts; shared pairs/path blocks not independent
+ALL_SOURCE_NATIVE,E1_HT,FIXED_SUM,25,9,24,0,0,1,0,-174.000,37.000,-2.858,0.529,0,descriptive counts; shared pairs/path blocks not independent

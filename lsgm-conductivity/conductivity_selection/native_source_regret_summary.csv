@@ -1,0 +1,4 @@
+source,branch,pairs,blocks,unique_E_decisions,E_expected_regret_decades_equal_block,uninformative_expected_regret_decades_equal_block,component_scope,inference
+HP1996,AUTHOR_REPORTED_REGIME_UNRESOLVED,31,13,31,0.0853420143773429,0.055767710269192056,DC_FROM_IMPEDANCE;bulk/total separation not explicit,"source/branch-specific descriptive only; overlapping pairs, no CI"
+STEVENSON1997,HIGH_T,4,3,4,0.0251923739262665,0.019194624133768653,"Effective total/macroscopicDC, not isolatedbulk","source/branch-specific descriptive only; overlapping pairs, no CI"
+STEVENSON1997,LOW_T,4,3,4,0.0251923739262665,0.019194624133768653,"Effective total/macroscopicDC, not isolatedbulk","source/branch-specific descriptive only; overlapping pairs, no CI"

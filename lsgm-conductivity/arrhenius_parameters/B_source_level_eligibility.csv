@@ -1,0 +1,8 @@
+source,Ea_parameter_rows,prefactor_rows,supported_operating_temperature_pair_count,reason
+C03_SOLGEL1996,1,1,0,Only one same-fit Ea/rawA association; no cross-composition source-local pair
+HP1996,16,0,0,No accepted source-linked same-fit lnA record; no prefactor inferred from conductivity/equation intercept
+HUANG1998,76,76,0,76same-fit Huang Ea/lnA rows; parameter-only contrasts retained; exact pairwise800C windows uncertified
+ONCEL,2,0,0,No accepted source-linked same-fit lnA record; no prefactor inferred from conductivity/equation intercept
+REIS,3,0,0,No accepted source-linked same-fit lnA record; no prefactor inferred from conductivity/equation intercept
+SHI,6,0,0,No accepted source-linked same-fit lnA record; no prefactor inferred from conductivity/equation intercept
+STEVENSON1997,14,0,0,No accepted source-linked same-fit lnA record; no prefactor inferred from conductivity/equation intercept
