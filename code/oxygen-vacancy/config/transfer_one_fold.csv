@@ -1,0 +1,2 @@
+config_id,split_id,cleaning,downstream_model,selected_parameters,candidate_MAE_meV,selection,N_train_rows,N_train_groups,N_test_rows,N_test_groups
+K_P3_r0_f0__exact_clean,R9_K_FE_P3_r0_f0,exact_clean,ExtraTreesRegressor,"{""max_features"": 0.5, ""min_samples_leaf"": 3}","[261.43449039763595, 266.5757341291005, 260.82442824418865, 271.0568839746136]",baseline_only,173,25,18,7

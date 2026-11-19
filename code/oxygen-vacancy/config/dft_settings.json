@@ -1,0 +1,114 @@
+{
+  "models": {
+    "DummyRegressor": [
+      {}
+    ],
+    "Ridge": [
+      {
+        "alpha": 0.1
+      },
+      {
+        "alpha": 1
+      },
+      {
+        "alpha": 10
+      },
+      {
+        "alpha": 100
+      }
+    ],
+    "RBF-SVR": [
+      {
+        "C": 1,
+        "gamma": "scale",
+        "epsilon": 0.1
+      },
+      {
+        "C": 1,
+        "gamma": 0.01,
+        "epsilon": 0.1
+      },
+      {
+        "C": 10,
+        "gamma": "scale",
+        "epsilon": 0.1
+      },
+      {
+        "C": 10,
+        "gamma": 0.01,
+        "epsilon": 0.1
+      }
+    ],
+    "ExtraTreesRegressor": [
+      {
+        "min_samples_leaf": 1,
+        "max_features": 0.5
+      },
+      {
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      {
+        "min_samples_leaf": 3,
+        "max_features": 0.5
+      },
+      {
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      }
+    ],
+    "XGBoost": [
+      {
+        "max_depth": 2,
+        "learning_rate": 0.05
+      },
+      {
+        "max_depth": 2,
+        "learning_rate": 0.1
+      },
+      {
+        "max_depth": 4,
+        "learning_rate": 0.05
+      },
+      {
+        "max_depth": 4,
+        "learning_rate": 0.1
+      }
+    ]
+  },
+  "fixed_model_parameters": {
+    "DummyRegressor": "strategy=median",
+    "Ridge": "sklearn defaults otherwise",
+    "RBF-SVR": "kernel=rbf",
+    "ExtraTreesRegressor": "128 trees; n_jobs=2",
+    "XGBoost": "150 trees; reg_lambda=10; hist; squared-error; n_jobs=2; subsample/colsample=1; no early stopping"
+  },
+  "model_seed": 161803,
+  "validation": {
+    "S1": "5 outer grouped folds by normalized formula; 3 inner grouped folds by normalized formula",
+    "S2": "PRIMARY OOD: 5 outer non-oxygen chemical-system-disjoint folds; 3 inner chemical-system-disjoint folds",
+    "algorithm": "GroupKFold shuffle=True; sorted formula IDs; group integers factorized in sorted order; outer random_state=314159; inner random_state=271828+fold",
+    "sensitivity": "After all B results, C1/C2/C3 repeat S2 for both targets and all five models. Restrict B S2 outer and inner assignments to retained formulas; retune only within those inner training folds. Reaggregate targets from retained CSV labels.",
+    "selection": "Same modest exhaustive grids as Phase3A; pooled inner-validation formula MAE; first candidate wins tie; no early stopping or outer-label selection."
+  },
+  "metrics": {
+    "primary": "Pooled formula/host MAE eV",
+    "secondary": [
+      "RMSE eV",
+      "R2 only N>=20 and target std>=0.1 eV",
+      "Dummy-relative improvement"
+    ],
+    "baseline": "Training-fold median, same outer training/test rows as predictive model",
+    "uncertainty": "5000 paired chemical-system-cluster bootstrap draws, seed=424242. Resample G global chemical systems with replacement; all formula losses in a sampled system share its multiplicity. Preserve paired model/Dummy and S1/S2 losses. Pooled row-weighted MAE uses resampled total formula count. Percentile 95% bounds; no refitting during bootstrap.",
+    "improvement": "Relative = 1 - model_MAE/Dummy_MAE; bootstrap ratio computed per draw. Also report paired absolute Dummy_MAE-model_MAE in eV.",
+    "validation_contrast": "For B, paired S2-minus-S1 formula loss contrast with same chemical-system cluster resampling, all predictive models; no presumption of degradation."
+  },
+  "software_versions": {
+    "numpy": "2.3.3",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "xgboost": "3.0.5",
+    "matminer": "0.9.3",
+    "pymatgen": "2025.10.7"
+  }
+}

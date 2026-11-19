@@ -1,0 +1,253 @@
+{
+  "version": "R9_CURRENT_FE",
+  "created_at_utc": "2026-09-28T16:28:10.968011+00:00",
+  "frozen_before_any_Phase3B_fit": true,
+  "source_hashes": {
+    "results/benchmark/composition_features.csv": "6176f6bf55b7e61f7333cd9d000dc5741b912d00025446157bf87303c03d547c",
+    "results/benchmark/cohort_manifest.csv": "7f674c7aa897eb898ee9b6c1c43b5b74e0434111a7223fa6110f5f544a67d29a",
+    "results/phase3a_1/composition_features.csv": "2e92804a2d142ed8bccdc9b4ac630650084c66d0a2670a5cfccc7cd4ae780e89",
+    "results/phase3a_1/source_clean_host_targets.csv": "c632a447d9b1a879d2679a135258f418c463e49b85dd94473c05ea064bc7db3e"
+  },
+  "target": {
+    "experimental": "primary Ea, meV; literature-reported apparent conductivity activation energy in oxygen-ion-conducting oxides",
+    "source": "unchanged Cohort K primary Ea in Phase2 cohort_manifest; no HT regimes",
+    "DFT_primary": "Ef_min_sourcefiltered_q0",
+    "DFT_secondary": "Ef_mean_sourcefiltered_q0",
+    "DFT_population": "published charge0.csv only, 1745 labels / 824 formulas; pinned hash 12f2f270127f98be9f1dc5e73619f1c995ab21b71f3a94493081d5890f37e596"
+  },
+  "frozen_membership": {
+    "file": "frozen_eligible_membership.csv",
+    "sha256": "d6242dcb8411ef302cfc966eef62a4fce0f23372fd67028ed8df4933313f2c5d",
+    "configurations_sha256": "5ed6c51589568cc4117e664cc55544fbcc47929d3106fe0568ec693b8cdb7075",
+    "reporting_row_ids_sha256": "023040bf432b23430063581d1846212cf4bd766bec3cd3f8db39c391b75bac27",
+    "exact": "191 FE rows; original groups retained",
+    "system": "183 FE rows in both repeats"
+  },
+  "features": {
+    "downstream": "exact frozen Phase2 composition_features.csv, all 144 columns including fixed component indicators; baseline unmodified; each auxiliary adds one scalar",
+    "DFT": "exact frozen Phase3A.1 139 composition-only features",
+    "prohibited": [
+      "family",
+      "DOI",
+      "distance",
+      "group ID",
+      "residuals",
+      "HT metadata"
+    ],
+    "preprocessing": "median imputation (empty ->0) and training-only exact-constant filter for both tree estimators, no scaling; no global fitted preprocessing"
+  },
+  "cleaning": "reuse Phase3A.2 full-483 test-group closure exclusions and allowed source lists; no recomputed outer eligibility; exact or nonO chemical system as frozen",
+  "auxiliary_policy": {
+    "primary": "ExtraTreesRegressor",
+    "secondary": "XGBoost real Ef_min exact P3 only",
+    "candidates": {
+      "ExtraTreesRegressor": [
+        {
+          "min_samples_leaf": 1,
+          "max_features": 0.5
+        },
+        {
+          "min_samples_leaf": 1,
+          "max_features": 1.0
+        },
+        {
+          "min_samples_leaf": 3,
+          "max_features": 0.5
+        },
+        {
+          "min_samples_leaf": 3,
+          "max_features": 1.0
+        }
+      ],
+      "XGBoost": [
+        {
+          "max_depth": 2,
+          "learning_rate": 0.05
+        },
+        {
+          "max_depth": 2,
+          "learning_rate": 0.1
+        },
+        {
+          "max_depth": 4,
+          "learning_rate": 0.05
+        },
+        {
+          "max_depth": 4,
+          "learning_rate": 0.1
+        }
+      ]
+    },
+    "fixed": {
+      "DummyRegressor": "strategy=median",
+      "Ridge": "sklearn defaults otherwise",
+      "RBF-SVR": "kernel=rbf",
+      "ExtraTreesRegressor": "128 trees; n_jobs=2",
+      "XGBoost": "150 trees; reg_lambda=10; hist; squared-error; n_jobs=2; subsample/colsample=1; no early stopping"
+    },
+    "seed": 161803,
+    "selection": "five chemical-system GroupKFold folds, shuffle=True, seed314159; sorted formula IDs, sorted factorized chemical systems; pooled formula MAE; first candidate wins ties; refit all allowed formulas",
+    "null_generation": "per allowed population sorted formula IDs; numpy default_rng(seed).permutation(formula Ef_min) for shuffled, standard_normal(N) for random; generate once before DFT CV; same fixed vector across candidates; no experimental Ea available",
+    "shuffle_seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019
+    ],
+    "random_seeds": [
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "cache": "identical allowed IDs, target construction, seed, estimator and grid share deterministic fit; every configuration links to its job; never cache across different allowed sets",
+    "jobs_sha256": "10e0a4981feb98ef232ea8af4feb8d0a4aa6c0ca9da5074dc5ae67d93e1c811a",
+    "number_unique_jobs": 710
+  },
+  "downstream_policy": {
+    "primary": "ExtraTreesRegressor",
+    "secondary": "XGBoost exact aggregate P3",
+    "candidates": {
+      "ExtraTreesRegressor": [
+        {
+          "min_samples_leaf": 1,
+          "max_features": 0.5
+        },
+        {
+          "min_samples_leaf": 1,
+          "max_features": 1.0
+        },
+        {
+          "min_samples_leaf": 3,
+          "max_features": 0.5
+        },
+        {
+          "min_samples_leaf": 3,
+          "max_features": 1.0
+        }
+      ],
+      "XGBoost": [
+        {
+          "max_depth": 2,
+          "learning_rate": 0.05
+        },
+        {
+          "max_depth": 2,
+          "learning_rate": 0.1
+        },
+        {
+          "max_depth": 4,
+          "learning_rate": 0.05
+        },
+        {
+          "max_depth": 4,
+          "learning_rate": 0.1
+        }
+      ]
+    },
+    "fixed": {
+      "ExtraTreesRegressor": {
+        "n_estimators": 128,
+        "max_depth": null,
+        "bootstrap": false,
+        "n_jobs": 2,
+        "random_state": 31415
+      },
+      "XGBoost": {
+        "n_estimators": 150,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "subsample": 1.0,
+        "colsample_bytree": 1.0,
+        "reg_lambda": 10.0,
+        "n_jobs": 2,
+        "random_state": 31415,
+        "verbosity": 0
+      }
+    },
+    "inner": "three shuffled GroupKFold connected-group splits on eligible outer-training rows; seed original outer seed +100+fold; frozen before outcomes; pooled row MAE, first candidate wins ties",
+    "selection": "composition baseline only; finish every baseline selection before auxiliary fitting/evaluation; reuse selected hyperparameters and model seed across all matched arms",
+    "inner_auxiliary_fits": "none: latest user mandates baseline-only tuning, so no DFT-supervised feature enters inner validation or model selection; outer eligibility remains frozen; this differs from an augmented-arm inner-tuning design that would require inner DFT exclusions",
+    "outer_fit": "all arms identical eligible train/test IDs; test Ea unavailable to fitting/tuning functions; load outcomes for scoring only after predictions saved"
+  },
+  "analyses": {
+    "primary": "exact P3, DFT ExtraTrees -> experimental ExtraTrees: baseline, real Efmin,20shuffled,20random",
+    "system_sensitivity": "system P3 same A/B/C/D, report both-repeat intersection",
+    "secondary_downstream": "exact P3 downstream XGBoost same controls and Efmean",
+    "secondary_auxiliary": "exact P3 real XGBoost auxiliary into downstream ExtraTrees, compare same baseline",
+    "Efmean": "secondary exact P3 and exact P4, never promotes to primary",
+    "P4": "Perovskite-related only confirmatory 40 rows/11groups; Apatite37original/28covered/3groups, Scheelite16covered/4groups,delta12covered/4groups exploratory; all four frozen P4 train/test/purges reused; no macro-family confirmation",
+    "Perovskite_component": "same family-trained predictions stratified by bulk16rows/6groups and total24rows/7groups, not separate component model refits; two groups overlap; sensitivity only"
+  },
+  "uncertainty": {
+    "bootstrap_seed": 8675309,
+    "draws": 5000,
+    "unit": "original global connected_group_id, common multiplicity across all arms",
+    "repeat_handling": "average each row-arm absolute loss across its two OOF predictions before bootstrap; not loss of averaged prediction; P4 one prediction",
+    "estimand": "row-weighted MAE; paired baseline-real, null ensemble-real, auxiliary-secondary gains",
+    "null_ensemble": "mean absolute error across all20 seeds per row, after repeat averaging; never average predictions to obtain ensemble error",
+    "CI": "percentile95%, conditional on fitted models/frozen source and splits; resample G groups with replacement retaining all rows; P4G<5 report point estimates without inferential CI; Perovskite componentG6/7 fragile intervals",
+    "additional_metrics": "RMSE computed from repeat-averaged squared losses; R2 descriptive only N>=20 and target SD>=100meV; no target changes"
+  },
+  "criteria": {
+    "material_positive": "baseline MAE-real MAE >=25meV AND relative gain>=0.10 AND paired delta CI lower>0",
+    "material_negative": "real MAE-baseline MAE>=25meV AND relative worsening>=0.10 AND paired baseline-real delta CI upper<0",
+    "defect_specific": "material positive AND shuffled-mean-loss minus real CI lower>0 AND random-mean-loss minus real CI lower>0",
+    "robustness": "system-clean supportive iff delta>0; secondary model direction reported; major contradictory reversal = symmetric material_negative criterion in system or downstream sensitivity, not merely negative tiny point estimate",
+    "categories_priority": [
+      "NEGATIVE TRANSFER if primary material_negative",
+      "NO MATERIAL TRANSFER if primary material_positive fails",
+      "NON-SPECIFIC AUXILIARY BENEFIT if primary material_positive passes but either specificity interval fails",
+      "DEFECT-SPECIFIC POSITIVE TRANSFER if primary material_positive and both specificity tests pass and neither main robustness sensitivity has major contrary reversal",
+      "NO MATERIAL TRANSFER as conservative overall fallback if primary-specific gain is materially contradicted by prespecified robustness; explicitly retain the positive primary result and explain veto; never invent fifth category"
+    ],
+    "family": "same materiality, one confirmatory family only; no broad cross-family claims; confirmatory family tested separately, no pooling or multiplicity-adjusted global claim",
+    "Go_interpretation": "GO for further separately authorized research only if category A; category B partial nonspecific support; C null material-transfer result; D negative-transfer result; no automatic next phase"
+  },
+  "stopping_rules": [
+    "run every prespecified seed/model/analysis regardless of outcome",
+    "no performance-driven retuning, threshold changes, exclusion or model substitution",
+    "stop on source hash mismatch, leakage or nonfinite predictions; fix implementation with transparent log without changing scientific plan",
+    "checkpoint completed deterministic jobs; resume failures only, no repeated success fits",
+    "no SHAP/mechanism/screening/secondDFT/manuscript"
+  ],
+  "runtime": {
+    "parallel_workers": 6,
+    "per_model_threads": 2,
+    "deterministic_cache_equivalence": true
+  },
+  "R9_spec_sha256": "2aa241e6f68bf1aa40d39247ae74128f42d42d2de3d1cb53dd424d2757581377",
+  "historical_outcomes_previously_exposed": true
+}
